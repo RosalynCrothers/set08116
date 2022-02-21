@@ -12,20 +12,24 @@ target_camera cam;
 bool load_content() {
   // *********************************
   // Set geometry type to lines
-	geom.set_typ(GL_LINES)
+	geom.set_type(GL_LINES);
   // *********************************
   // Positions
   vector<vec3> positions{
       // *********************************
       // Add the position data for four lines here
 
-	  vec3(-1, 0, 0), //point 1
-	  vec3(-0.5, 1, 0), //point 2
-	  vec3(-0.25, -1, 0), //point 3
-	  vec3(0, 1, 0), //point 4
-	  vec3(0.5, -1, 0), //point 5
-	  vec3(0.75, 1, 0), //point 6
-	  vec3(1, 0, 0), //point 7
+	  vec3(-1,1,0),
+	  vec3(1,1,0),
+
+	  vec3(1,1,0),
+	  vec3(1,-1,0),
+
+	  vec3(1,-1,0),
+	  vec3(-1,-1,0),
+
+	  vec3(-1,-1,0),
+	  vec3(-1,1,0)
 
       // *********************************
   };

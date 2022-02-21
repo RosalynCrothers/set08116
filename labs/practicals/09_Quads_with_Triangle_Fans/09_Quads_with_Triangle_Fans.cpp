@@ -12,12 +12,16 @@ target_camera cam;
 bool load_content() {
   // *********************************
   // Set geometry type to triangle fan
-
+	geom.set_type(GL_TRIANGLE_FAN);
   // *********************************
   // Positions
   vector<vec3> positions{
       // *********************************
       // Add the position data for our triangle fan here
+	  vec3(0.0, -1.0, 0.0),
+	  vec3(1.0, 1.0, 0.0),
+	  vec3(0.5, 3.0, 0.0),
+	  vec3(-0.5, 2.0, 0.0)
 
       // *********************************
   };

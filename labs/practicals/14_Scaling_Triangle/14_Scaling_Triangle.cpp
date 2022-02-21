@@ -50,10 +50,10 @@ bool update(float delta_time) {
 bool render() {
   // Bind effect
   renderer::bind(eff);
-  mat4 S;
+  mat4 S = glm::mat4(s);;
   // *********************************
   // Create scale matrix - use uniform scale based on s
-
+  S = glm::scale(S, vec3(3,1,1));
   // *********************************
   // Create MVP matrix
   auto V = cam.get_view();

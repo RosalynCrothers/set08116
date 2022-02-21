@@ -13,8 +13,9 @@ target_camera cam;
 bool load_content() {
   // *********************************
   // Set geometry type to quads
-
   // *********************************
+
+	geom.set_type(GL_QUADS);
   // Create quad data
   // Positions
   vector<vec3> positions{
@@ -22,6 +23,12 @@ bool load_content() {
       // Add the four positions of the quad corners here
 
       // *********************************
+
+	  vec3(-1.0, 1.0 ,0.0),
+	  vec3(1.0, 1.0, 0.0),
+	  vec3(1.0, -1.0, 0.0),
+	  vec3(-1.0, -1.0, 0.0)
+
   };
   // Colours
   vector<vec4> colours{vec4(1.0f, 0.0f, 0.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f), vec4(1.0f, 0.0f, 0.0f, 1.0f),

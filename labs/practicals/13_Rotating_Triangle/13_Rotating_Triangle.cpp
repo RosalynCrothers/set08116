@@ -45,10 +45,10 @@ bool update(float delta_time) {
 bool render() {
   // Bind effect
   renderer::bind(eff);
-  mat4 R;
+  glm::mat4 R = glm::mat4(1.0f);
   // *********************************
   // Create rotation matrix - rotate around Z axis by theta
-
+  R = glm::rotate(R, theta, vec3(3,0,1));
   // *********************************
   // Create MVP matrix
   auto V = cam.get_view();

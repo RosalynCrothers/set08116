@@ -53,13 +53,15 @@ bool update(float delta_time) {
 bool render() {
   // Bind effect
   renderer::bind(eff);
-  mat4 S, R, M;
+  mat4 S = mat4(s);
+  mat4 R = mat4(theta);
+  mat4 M;
   // *********************************
   // Create rotation matrix and scale matrix
   // Set M to be the combination of scale and rotation - make sure you have the correct order
-
-
-
+  S = glm::scale(S, vec3(1,3,1));
+  R = glm::rotate(R, theta, vec3(0, 0, 1));
+  M = S * R;
   // *********************************
   // Create MVP matrix
   auto V = cam.get_view();

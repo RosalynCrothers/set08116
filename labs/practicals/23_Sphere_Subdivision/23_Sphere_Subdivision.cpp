@@ -11,24 +11,26 @@ target_camera cam;
 float theta = 0.0f;
 float rho = 0.0f;
 
-const int subdivisions = 5;
+const int subdivisions = 10;
 
 void divide_triangle(const vector<vec3> &points, int divisions, vector<vec3> &positions, vector<vec4> &colours) {
   // IF we have more divisions to do?
-  if (divisions > 0) {
-    // *********************************
-    // Calculate new vertices to work on (Normalize each element!)
-	  for(int i=0;i=2;i++)
-		positions[i]= positions[i] + points[i];
-		
 
-    // Divide new triangles
+  if (divisions > 0)
+  {
+	  vec3 temp1 = points[0] + points[1];
+	  vec3 temp2 = points[0] + points[2];
+	  vec3 temp3 = points[1] + points[2];
+	  temp1 = normalize(temp1);
+	  temp2 = normalize(temp2);
+	  temp3 = normalize(temp3);
 
-
-
-
-    // *********************************
-  } else {
+	  divide_triangle({ points[0], temp1, temp2 }, divisions - 1, positions, colours);
+	  divide_triangle({ points[2], temp2, temp3 }, divisions - 1, positions, colours);
+	  divide_triangle({ points[1], temp3, temp1 }, divisions - 1, positions, colours);
+	  divide_triangle({ temp1, temp3, temp2 }, divisions - 1, positions, colours);
+  }
+  else {
     positions.insert(positions.end(), points.begin(), points.end());
     for (auto i = 0; i < 3; ++i) {
       colours.push_back(vec4(0.6f, i % 2, i % 3, 1.0f));

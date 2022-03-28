@@ -76,9 +76,9 @@ bool render() {
 
   // *********************************
   // Bind the three textures - use different index for each
-
-
-
+  renderer::bind(texs[0], 0);
+  renderer::bind(texs[1], 1);
+  renderer::bind(blend_map, 2);
   // *********************************
 
   // Set the uniform values for textures
@@ -94,7 +94,7 @@ bool render() {
 
 void main() {
   // Create application
-  app application("32_Blended_Textures");
+  app application("32_Blended_Textures"); 
   // Set load content, update and render methods
   application.set_load_content(load_content);
   application.set_update(update);

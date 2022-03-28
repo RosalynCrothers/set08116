@@ -27,12 +27,11 @@ bool load_content() {
   geom.add_buffer(tex_coords, BUFFER_INDEXES::TEXTURE_COORDS_0);
 
   // Create three mesh objects - reuse geometry
-  for (auto &m : meshes) {
-    // *********************************
-
-    // Scale each mesh by 10
-
-    // *********************************
+  for (unsigned int i = 0; i < meshes.size(); ++i) {
+	  meshes[i] = mesh(geom);
+	  meshes[i].get_transform().scale = vec3(10.0f, 400.0f, 10.0f);
+	  meshes[i].get_transform().rotate(vec3(-half_pi<float>(), 0.0f, 0.0f));
+	  meshes[i].get_transform().translate((static_cast<float>(i) * vec3(21.0f, 0.0f, 0.0f)) - vec3(21.0f, 0.0f, 0));
   }
 
   // Set mesh positions - remember scale
@@ -93,11 +92,11 @@ bool render() {
 
     // *********************************
     // Bind correct texture to renderer
-
+	renderer::bind(texs[i], 0);
     // Set the texture value for the shader here
-
+	glUniform1i(eff.get_uniform_location("tex"), 0);
     // Render the mesh
-
+	renderer::render(meshes[i]);
     // *********************************
   }
 

@@ -46,7 +46,10 @@ bool load_content() {
   // 2 - mipmaps, anisotropic
   // 3 - mipmaps, no anisotropic
   // ******************************
-
+  texs[0] = texture("textures/checker.png", false, false);
+  texs[1] = texture("textures/checker.png", false, true);
+  texs[2] = texture("textures/checker.png", true, true);
+  texs[3] = texture("textures/checker.png", true, true);
 
 
 

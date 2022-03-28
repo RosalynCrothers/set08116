@@ -5,8 +5,7 @@ uniform sampler2D tex;
 
 // Incoming texture coordinate
 layout (location = 0) in vec2 tex_coord;
-
-layout (location = 10) in vec4 ambient
+layout (location = 10) in vec3 vertex_colour
 // Outgoing colour
 layout (location = 0) out vec4 out_colour;
 
@@ -15,5 +14,5 @@ void main()
 	// ****************************************
 	// Set out colour to sampled texture colour
 	// ****************************************
-	out_colour = ambient * texture(tex, tex_coord);
+	out_colour = vertex_colour * texture(tex, tex_coord);
 }

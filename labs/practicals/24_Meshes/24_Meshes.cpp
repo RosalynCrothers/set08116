@@ -23,7 +23,8 @@ bool load_content() {
 
   // *********************************
   // Create mesh object here
-
+  m = mesh(geom);
+  m = mesh()
   // *********************************
 
   // Load in shaders
@@ -40,27 +41,29 @@ bool load_content() {
   return true;
 }
 
-bool update(float delta_time) {
-  // Update the camera
-  cam.update(delta_time);
-  return true;
-}
-
 bool render() {
-  // Bind effect
-  renderer::bind(eff);
-  // Create MVP matrix
-  mat4 M(1.0f);
-  auto V = cam.get_view();
-  auto P = cam.get_projection();
-  auto MVP = P * V * M;
-  // Set MVP matrix uniform
-  glUniformMatrix4fv(eff.get_uniform_location("MVP"), 1, GL_FALSE, value_ptr(MVP));
-  // *********************************
-  // Render the mesh here
+	// Render meshes
+	for (auto &e : meshes) {
+		auto m = e.second;
+		// Bind effect
+		renderer::bind(eff);
+		// Create MVP matrix
+		auto M = m.get_transform().get_transform_matrix();
+		auto V = cam.get_view();
+		auto P = cam.get_projection();
+		auto MVP = P * V * M;
+		// Set MVP matrix uniform
+		glUniformMatrix4fv(eff.get_uniform_location("MVP"), 1, GL_FALSE, value_ptr(MVP));
 
-  // *********************************
-  return true;
+		// Bind and set texture
+		renderer::bind(tex, 0);
+		glUniform1i(eff.get_uniform_location("tex"), 0);
+
+		// Render mesh
+		renderer::render(m);
+	}
+
+	return true;
 }
 
 void main() {

@@ -16,42 +16,50 @@ bool load_content() {
 
   // *********************************
   // box
-
+  meshes["geom_box"] = mesh(geometry_builder::create_box());
   // Tetrahedron
-
+  meshes["geom_tetra"] = mesh(geometry_builder::create_tetrahedron());
   // Pyramid
-
+  meshes["geom_pyra"] = mesh(geometry_builder::create_pyramid());
   // Disk
-
+  meshes["geom_disk"] = mesh(geometry_builder::create_disk());
   // Cylinder
-
+  meshes["geom_cyl"] = mesh(geometry_builder::create_cylinder());
   // Sphere
-
+  meshes["geom_sph"] = mesh(geometry_builder::create_sphere());
   // Torus
-
+  meshes["geom_torus"] = mesh(geometry_builder::create_torus());
 
   // Set the transforms for your meshes here
   // 5x scale, move(-10.0f, 2.5f, -30.0f)
-
+  meshes["geom_box"].get_transform().scale = vec3(5.0f, 5.0f, 5.0f);
+  meshes["geom_box"].get_transform().position = vec3(-10.0f, 2.5f, -30.0f);
 
   // 4x scale, move(-30.0f, 10.0f, -10.0f)
-
+  meshes["geom_tetra"].get_transform().scale = vec3(4.0f, 4.0f, 4.0f);
+  meshes["geom_tetra"].get_transform().position = vec3(-30.0f, 10.0f, -10.0f);
 
   // 5x scale, move(-10.0f, 7.5f, -30.0f)
-
+  meshes["geom_pyra"].get_transform().scale = vec3(5.0f, 5.0f, 5.0f);
+  meshes["geom_pyra"].get_transform().position = vec3(-10.0f, 7.5f, -30.0f);
 
   // scale(3.0f, 1.0f, 3.0f), move(-10.0f, 11.5f, -30.0f), 180 rotate X axis
-
+  meshes["geom_disk"].get_transform().scale = vec3(3.0f, 1.0f, 3.0f);
+  meshes["geom_disk"].get_transform().position = vec3(-10.0f, 11.5f, -30.0f);
+  meshes["geom_disk"].get_transform().rotate(vec3(180.0f, 0.0f, 0.0f));
 
 
   // 5x scale, move(-25.0f, 2.5f, -25.0f)
-
+  meshes["geom_cyl"].get_transform().scale = vec3(5.0f, 5.0f, 5.0f);
+  meshes["geom_cyl"].get_transform().position = vec3(-25.0f, 2.5f, -25.0f);
 
   // 2.5x scale, move(-25.0f, 10.0f, -25.0f)
-
+  meshes["geom_sph"].get_transform().scale = vec3(2.5f, 2.5f, 2.5f);
+  meshes["geom_sph"].get_transform().position = vec3(-25.0f, 10.0f, -25.0f);
 
   // 180 rotate X axis, move(-25.0f, 10.0f, -25.0f)
-
+  meshes["geom_torus"].get_transform().rotate(vec3(180.0f, 0.0f, 0.0f));
+  meshes["geom_torus"].get_transform().position = vec3(-25.0f, 10.0f, -25.0f);
 
   // *********************************
 
@@ -94,9 +102,9 @@ bool render() {
 
     // *********************************
     // Bind texture to renderer
-
+	renderer::bind(tex, 0);
     // Set the texture value for the shader here
-
+	glUniform1i(eff.get_uniform_location("tex"), 0);
     // *********************************
     // Render mesh
     renderer::render(m);

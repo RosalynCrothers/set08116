@@ -2,8 +2,10 @@
 
 // The transformation matrix
 uniform mat4 MVP;
+
 // The ambient intensity of the scene
 uniform vec4 ambient_intensity;
+
 // The material colour of the object
 uniform vec4 material_colour;
 
@@ -16,10 +18,9 @@ layout(location = 0) out vec4 vertex_colour;
 void main() {
   // *********************************
   // Calculate position
-
-  // Calculate ambient component
+  gl_Position = MVP * vec4(position, 1.0);
 
   // Output vertex colour
-
+  vertex_colour = ambient_intensity * material_colour;
   // *********************************
 }
